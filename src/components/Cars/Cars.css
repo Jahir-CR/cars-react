@@ -1,0 +1,30 @@
+img{
+    border: 1px solid black;
+    border-radius: 6px;
+    border-width: 4px;
+    width: 400px;
+    margin-left: -80px;
+}
+
+.car{
+    margin-top: -100px;
+    margin-left: 600px;
+    font-size: 20px;
+    font-style: italic;
+    color: black;
+}
+
+.botones{
+    margin-left: 600px;
+}
+.boton-comprar {
+    width: 120px;
+    
+    margin-top: 120px;
+    margin-left: -190px;
+}
+.boton-volver{
+    margin-top: -10px;
+    margin-left: 400px;
+    width: 120px;
+}

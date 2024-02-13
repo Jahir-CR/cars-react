@@ -1,88 +1,53 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { carro1, carro2, carro3 } from "../assets/content/content";
 import "./CarDescription.css";
 
-const carro1 = {
-  marca: "Toyota",
-  modelo: "Supra",
-  precio: "₡8.000.000",
-  imagen: "../images/supra.webp",
-};
-const carro2 = {
-  marca: "Toyota",
-  modelo: "Hilux",
-  precio: "₡15.000.000",
-  imagen: "../images/hilux.webp",
-  
-};
-const carro3 = {
-  marca: "Toyota",
-  modelo: "Prius",
-  precio: "₡5.000.000",
-  imagen: "../images/prius.jpeg",
-};
-
 const CarDescription = () => {
-  const navigate = useNavigate(); 
-  const [tipo, setTipo] = useState("");
+  const navigate = useNavigate();
   const [carro, setCar] = useState({});
 
-
-  //   useEffect(() => {
-  //     const storedCar = localStorage.setItem("carro", JSON.stringify(carro));
-  //     console.log("Carro JSON ", JSON.parse(localStorage.getItem("carro")));
-  //   }, []);
-
   useEffect(() => {
-    const getCar = async () => {
-      if (tipo === "deportivo") {
-        setCar(carro1);
-      }
-      if (tipo === "4x4") {
-        setCar(carro2);
-      }
-      if (tipo === "economico") {
-        setCar(carro3);
-      }
-    };
-    getCar();
-    
-  }, [tipo]);
+    if (JSON.stringify(carro) === JSON.stringify(carro1)) {
+      navigate("../Toyota-Supra");
+    }
+    if (JSON.stringify(carro) === JSON.stringify(carro2)) {
+      navigate("../Toyota-Hilux");
+    }
+    if (JSON.stringify(carro) === JSON.stringify(carro3)) {
+      navigate("../Toyota-Prius");
+    }
+  }, [carro]);
 
-  useEffect(()=>{
-    if(JSON.stringify(carro) === JSON.stringify(carro1)){
-        navigate("../Toyota-Supra")
+  const handleOnChange = (e) => {
+    const tipo = e.target.value;
+    if (tipo === "deportivo") {
+      setCar(carro1);
     }
-    if(JSON.stringify(carro) === JSON.stringify(carro2)){
-        navigate("../Toyota-Hilux")
+    if (tipo === "4x4") {
+      setCar(carro2);
     }
-    if(JSON.stringify(carro) === JSON.stringify(carro3)){
-        navigate("../Toyota-Prius")
+    if (tipo === "economico") {
+      setCar(carro3);
     }
-  }, [carro])
+  };
 
   //GUARDAR EL CARRO EN LOCALSTORAGE
-  localStorage.setItem("carro", JSON.stringify(carro));  
-
+  localStorage.setItem("carro", JSON.stringify(carro));
 
   return (
     <>
       <div className="dropdown">
         <h1>Comprar Carro</h1>
         <h3>Primero selecciona el tipo de carro que deseas comprar</h3>
-        <button className="dropbtn">Tipo de carro</button>
-        <div className="dropdown-content">
-          <button
-            onClick={() => {
-              setTipo("deportivo");
-              // navigate('../Toyota-Supra');
-            }}
-          >
-            Deportivo🏎
-          </button>
-          <button onClick={() => setTipo("4x4")}>4x4🛻</button>
-          <button onClick={() => setTipo("economico")}>Usado🚗</button>
-        </div>
+        <select className="dropdown" onChange={handleOnChange}>
+          <option selected disabled>
+            Seleccionar carro...
+          </option>
+          <option value="deportivo">Deportivo</option>
+          <option value="4x4">4x4</option>
+          <option value="usado"> Usado</option>
+        </select>
       </div>
     </>
   );

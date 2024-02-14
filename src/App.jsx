@@ -1,16 +1,16 @@
 import "./App.css";
 import Home from "./components/Home";
 import CarDescription from "./components/CarDescription";
-import Supra from "./components/Cars/Supra";
-import Hilux from "./components/Cars/Hilux";
-import Prius from "./components/Cars/Prius";
+import Supra from "./components/routes/Supra";
+import Hilux from "./components/routes/Hilux";
+import Prius from "./components/routes/Prius";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   return(
   <BrowserRouter>
     <Routes>
-      <Route path="/Home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/CarDescription" element={<CarDescription />} />
       <Route path="/Toyota-Supra" element={<Supra />} />
       <Route path="/Toyota-Hilux" element={<Hilux />} />
